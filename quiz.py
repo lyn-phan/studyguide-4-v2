@@ -379,7 +379,7 @@ class SQLQuiz(object):
                              "Remove answers.sql to redo the exercise.")
 
         print(INTRO)
-        raw_input("Press RETURN to start> ")
+        input("Press RETURN to start> ")
         print()
 
         self.current_problem = self.problems[0]
@@ -437,9 +437,9 @@ class SQLQuiz(object):
             try:
                 if not sql:
                     print()
-                    line = raw_input("SQL [{}]> ".format(problem.num))
+                    line = input("SQL [{}]> ".format(problem.num))
                 else:
-                    line = raw_input("... [{}]> ".format(problem.num))
+                    line = input("... [{}]> ".format(problem.num))
             except EOFError:
                 return False
 
