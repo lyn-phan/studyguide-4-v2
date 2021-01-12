@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Practice JavaScript</title>
   <link rel="stylesheet" href="static/styles.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+  crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -36,7 +38,13 @@
 
 <script>
   "use strict";
-  // code here for above problem
+   
+   const button = document.querySelector('#popup-alert-button')
+   button.addEventListener('click', () => {
+     alert("Here's my popup!")
+
+   });
+
 </script>
 
 
@@ -78,7 +86,18 @@
 <script>
   "use strict";
 
-  // code here for the above problem
+  document.querySelector('#multiplying-form').addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const mults = Number(document.querySelector('#mults-of').value)
+    const max = Number(document.querySelector('#max').value)
+
+    const multiples = [];
+    for (let n = 0; n *= mults; n <= max) {
+      multiples.push(n);
+    }
+    console.log(multiples);
+  });
 
 </script>
 
@@ -96,7 +115,7 @@
 <div class="hint">
   <div>
     Remember you need a script tag in the head of this page that pulls in jQuery's source code.
-  </div>
+  </div> 
 </div>
 
 
