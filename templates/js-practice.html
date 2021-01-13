@@ -243,7 +243,11 @@
 
     var PRIME_COLORS = ['orange', 'midnightblue', 'darkgoldenrod', 'green', 'purple'];
 
-  // put the rest of your code here
+    $('#make-prime-circles').on('click', (evt) => {
+      evt.preventDefault();
+
+
+    });
 </script>
 
 
@@ -278,19 +282,21 @@
   "use strict";
 
   // NOTE: DO NOT CHANGE THE CODE OF THIS FUNCTION
-  function showPuppies(results) {
+  const showPuppies(response) {
     //get the URL for the puppy photo out of the results object
-    var puppyURL = results.url;
+    const url = response.url
 
     //create a new img element and set its source to be the puppy URL
-    var puppyPhoto = $("<img>").attr("src", puppyURL);
+    // var puppyPhoto = $("<img>").attr("src", puppyURL);
 
     //clear anything in the div and then add the img element
     $("#puppies-go-here").empty();
-    $("#puppies-go-here").append(puppyPhoto);
+    $("#puppies-go-here").append(`<img src="${url}">`);
   }
 
-  // put your code here
+  $.get('/api/puppies', {'num-puppies': $('num-puppies').val()}, showPuppies);
+
+  
 
 </script>
 
