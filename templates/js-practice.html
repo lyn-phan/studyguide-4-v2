@@ -196,7 +196,15 @@
 
 <script>
   "use strict";
-  // put your code here
+
+  $('#agreeable-form').on('submit', (evt) => {
+    evt.preventDefault();
+
+    const food = $('#favorite-food-input').val()
+
+    $('#agreeable-text').html(`I like ${food}, too.`);
+  });
+
 </script>
 
 <div class="hint">
