@@ -224,32 +224,84 @@
   Each box should have a different color, chosen from the list of colors in the JavaScript. You can re-use our <code>prime-circle</code> class to make your numbers look like ours, if you want (or feel free to experiment with other CSS).
 </p>
 <p>The result should look like:</p>
-<div>
-  <div class="prime-circle" style="background-color: orange">2</div>
-  <div class="prime-circle" style="background-color: midnightblue">3</div>
-  <div class="prime-circle" style="background-color: darkgoldenrod">5</div>
-  <div class="prime-circle" style="background-color: green">7</div>
-  <div class="prime-circle" style="background-color: purple">11</div>
+
+<button id="the-button" disabled="disabled">Press me!</button>
+<div id="circle-holder" class="circle-holder">
+  <div class="circle" style="background-color: orange">2</div>
+  <div class="circle" style="background-color: midnightblue">3</div>
+  <div class="circle" style="background-color: darkgoldenrod">5</div>
+  <div class="circle" style="background-color: green">7</div>
+  <div class="circle" style="background-color: purple">11</div>
 </div>
-<p>You must calculate the prime numbers; you cannot just hard-code them.</p>
 
-<fieldset>
-  <div id="prime-circle-area"><!-- Your prime circles should appear here! --></div>
-  <input type="button" id="make-prime-circles" value="Button">
-</fieldset>
+<script type="text/JavaScript">
+// grabbing DOM elements here
+const theButton = document.querySelector('#the-button')
+const circleHolder = document.querySelector('#circle-holder')
 
-<script>
-  "use strict";
+// store the colors in an array for later use
+const colorArray = ['orange', 'midnightblue', 'darkgoldenrod', 'green', 'purple'];
 
-    var PRIME_COLORS = ['orange', 'midnightblue', 'darkgoldenrod', 'green', 'purple'];
+// State object will keep track of progress
+state = {
+  buttonPresses: 0
+  displayNumber: 1
+};
 
-    $('#make-prime-circles').on('click', (evt) => {
-      evt.preventDefault();
+theButton.addEventListener('click', function(evt) => {
+  const nextPrimeNumber;
+  const nextPrimeNumberFound = false;
+  const counter = state.displayNumber;
+
+  evt.preventDefault();
+
+  state.buttonPresses = state.buttonPresses + 1;
+
+  if (state.buttonPresses <= 5) {
+    while (!nextPrimeNumberFound) {
+      counter++;
+      nextPrimeNumberFound = determineIfPrime(counter);
+    }
+
+    state.displayNumber = counter;
+
+    addCircle();
+
+    if (state.buttonPresses == 5) {
+      theButton.setAttribute('disabled', 'disabled');
+    }
+  }
+});
+
+function determineIfPrime(currentCounter) {
+  for (let i = 2; i < currentCounter; i++) {
+    if (currentCounter % 1 === 0) {
+      return false;
+    }
+  }
+return true;
+}
+
+function addCircle() {
+  const newCircle = document.createElement('div')
+  const number = document.createTextNode(state.displayNumber);
+
+  newCircle.classList.add('circle');
+  newCircle.setAttribute('style', ('background-color: ' + colorArray[state.buttonPresses - 1] + ';'));
+  newCircle.appendChild(number);
+  circleHolder.appendChild(newCircle);
+}
 
 
-    });
+
+
+
+// <fieldset>
+//   <div id="prime-circle-area"><!-- Your prime circles should appear here! --></div>
+//   <input type="button" id="make-prime-circles" value="Button">
+// </fieldset>
+
 </script>
-
 
 
 <h2>AJAX</h2>
